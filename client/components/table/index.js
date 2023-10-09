@@ -35,7 +35,7 @@ export const Table = ({ rows, role, deleteRow, editRow }) => {
       <table className="table">
         <thead>
           <tr>
-            <th>Page</th>
+            <th>#</th>
             <th>First Name</th>
             <th>Last Name</th>
             <th>Age</th>
@@ -48,9 +48,10 @@ export const Table = ({ rows, role, deleteRow, editRow }) => {
         </thead>
         <tbody>
           {currentData.map((row, idx) => {
+            const rowNumber = startIndex + idx + 1;
             return (
               <tr key={idx}>
-                <td>{idx+1}</td>
+                <td>{rowNumber}</td>
                 <td>{row.firstName}</td>
                 <td>{row.lastName}</td>
                 <td>{row.age}</td>
