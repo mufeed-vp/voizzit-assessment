@@ -12,7 +12,6 @@ const Signup = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   // User Signup info
-  const [inputField , setInputField] = useState(null)
 
   const errors = {
     fname: "Please enter your first name",
@@ -27,14 +26,6 @@ const Signup = () => {
     event.preventDefault();
 
     const { fname, lname, age, email, pass } = event.target.elements;
-
-    setInputField({
-        firstName: fname.value,
-        lastName: lname.value,
-        age: age.value,
-        email: email.value,
-        password: pass.value,
-      });
 
     // Validate form fields
     if (!fname.value.trim()) {
@@ -61,6 +52,7 @@ const Signup = () => {
       try {
         // setLoading(true);
         const response = await axios.post(`${baseURL}/signup`, newUser);
+        
         setIsSubmitted(true);
         // router.push("/login-form");
         
