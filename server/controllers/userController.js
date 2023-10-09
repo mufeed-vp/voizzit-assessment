@@ -113,8 +113,7 @@ const getUserProfile = asyncHandler(async (req, res) => {
 // route   PUT /dashboard
 // access  Private
 const updateUserProfile = asyncHandler(async (req, res) => {
-  const user = await User.findById(req.user._id);
-
+  const user = await User.findById(req.body._id);
   if (user) {
     user.firstName = req.body.firstName || user.firstName;
     user.lastName = req.body.lastName || user.lastName;
