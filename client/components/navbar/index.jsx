@@ -23,11 +23,6 @@ const Navbar = () => {
               <li><a href="/sign-up">Signup</a></li>
               <li><a href="/dashboard">Dashboard</a></li>
               <li onClick={logOut} className={styles.bn59}>Logout</li>
-              {/* <li>
-              <button onClick={logOut} className={styles.bn59}>
-                Logout
-              </button> 
-              </li> */}
             </ul>
           </nav>
         </div>
