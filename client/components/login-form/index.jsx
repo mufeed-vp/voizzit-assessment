@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Cookies from "js-cookie"
-import { redirect } from "next/navigation";
 import { useRouter } from 'next/navigation'
 import styles from './loginForm.module.scss'
 
@@ -14,18 +13,6 @@ const Login = () => {
   // React States
   const [errorMessages, setErrorMessages] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
-
-
-  // useEffect(() => {
-  //   const user = JSON.parse(localStorage.getItem("user"));
-  //   if(user) {
-      
-  //   // Redirect to a different route programmatically
-  //   console.log("login pages",user)
-  //   router.push('/dashboard')
-  //   }
-  // }, [])
-  
 
 
   const handleSubmit = async (event) => {
@@ -41,12 +28,10 @@ const Login = () => {
       const response = await axios.post(`${baseURL}/login`, loginUser);
       if (response) {
         const user = response.data;
-        console.log("123456",user);
         
         Cookies.set('token', user.token);
         localStorage.setItem("user", JSON.stringify(user));
         setIsSubmitted(true);
-        console.log("Sigin success", response.data);
         // router.push("/login-form");
       }
     } catch (error) {

@@ -24,16 +24,7 @@ export const Modal = ({ closeModal, onSubmit, defaultValue }) => {
 
   const handleChange = (e) => {
     setFormState({ ...formState, [e.target.name]: e.target.value });
-    console.log("formData,",formState);
   };
-
-  // const handleChange = (e) => {
-  //   setFormState((prevState) => ({
-  //     ...prevState,
-  //     [e.target.name]: e.target.value,
-  //   }));
-  //   console.log("formData,", formState);
-  // };
 
   const handleSubmit = (e) => {
     e.preventDefault();

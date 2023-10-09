@@ -61,13 +61,11 @@ const Signup = () => {
       try {
         // setLoading(true);
         const response = await axios.post(`${baseURL}/signup`, newUser);
-        console.log("Signup success", response.data);
         setIsSubmitted(true);
         // router.push("/login-form");
         
     } catch (error) {
         console.log("Signup failed", error.message);
-        
         // toast.error(error.message);
     }
     }

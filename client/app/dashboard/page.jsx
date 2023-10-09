@@ -19,7 +19,6 @@ const DarshBoard = () => {
         axios.get(`${baseURL}`)
       .then( res => {
         setRows(res.data)
-        console.log("data",res.data)
       })
     } catch (error) {
       console.log(error)
@@ -30,19 +29,16 @@ const DarshBoard = () => {
     getUserDetails()
     const user = JSON.parse(localStorage.getItem("user"))
     setUserRole(user.role)
-    console.log("dash user",user)
     // deteleUserDetails()
   },[])
 
   const [rowToEdit, setRowToEdit] = useState(null);
 
   const handleDeleteRow = (userId,targetIndex) => {
-    console.log("targetIndex",targetIndex, userId)
     try {
       axios.delete(`${baseURL}`,{data:userId})
       .then( res => {
         setRows(rows.filter((_, idx) => idx !== targetIndex));
-        console.log("delete",res.data.message)
       })
     } catch (error) {
       console.log(error)
@@ -65,7 +61,6 @@ const DarshBoard = () => {
             return newRow;
           })
         );
-        console.log("data",res.data)
       })
     } catch (error) {
       console.log(error)

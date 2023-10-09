@@ -4,7 +4,6 @@ import { BsFillTrashFill, BsFillPencilFill } from "react-icons/bs";
 import "./Table.css";
 
 export const Table = ({ rows, role, deleteRow, editRow }) => {
-  console.log(role,"sadsfdh");
   
   return (
     <div className="table-wrapper">
@@ -24,9 +23,6 @@ export const Table = ({ rows, role, deleteRow, editRow }) => {
         </thead>
         <tbody>
           {rows.map((row, idx) => {
-            // const statusText =
-            //   row.status.charAt(0).toUpperCase() + row.status.slice(1);
-
             return (
               <tr key={idx}>
                 <td>{idx+1}</td>
