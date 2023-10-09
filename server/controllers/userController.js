@@ -9,9 +9,7 @@ const authUser = asyncHandler(async (req, res) => {
     const { email, password } = req.body;
 
     const user = await User.findOne({ email });
-    // console.log("user....",user)
     if (user) {
-        console.log("passweord", await user.matchPassword(password))
         if (!await user.matchPassword(password)) {
             
             return res.status(401).json({ success: false,name: 'pass', message: 'Invalid password' })
@@ -38,10 +36,7 @@ const authUser = asyncHandler(async (req, res) => {
 // route   POST /signup
 // access  Public
 const registerUser = asyncHandler(async (req, res) => {
-    console.log("request body", req.body)
   const { firstName, lastName, email,age, password } = req.body;
-
-  console.log("request body222", firstName, lastName, email,age, password )
 
   const userExists = await User.findOne({ email });
 
@@ -152,7 +147,6 @@ const deleteUserProfile = asyncHandler(async (req, res) => {
     const userId = req.body._id;
     const deletionResult = await User.deleteOne({ _id: userId });
     if (deletionResult.deletedCount === 1) {
-      console.log("User deleted");
       res.json({ message: 'User deleted' });
     } else {
       console.log("User not found");
