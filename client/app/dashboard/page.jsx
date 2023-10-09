@@ -3,7 +3,7 @@ import React, { useEffect } from 'react'
 import { useState } from "react";
 import axios from 'axios'
 
-import "./App.css";
+import style from "./dashboard.module.scss";
 import { Table } from '@/components/table';
 import { Modal } from "@/components/modal";
 
@@ -68,7 +68,7 @@ const DarshBoard = () => {
   };
 
   return (
-    <div className="App">
+    <div className={style.container}>
       <Table rows={rows} role={userRole} deleteRow={handleDeleteRow} editRow={handleEditRow} />
       {/* <button onClick={() => setModalOpen(true)} className="btn">
         Add
