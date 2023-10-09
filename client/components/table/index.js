@@ -4,6 +4,31 @@ import { BsFillTrashFill, BsFillPencilFill } from "react-icons/bs";
 import "./Table.css";
 
 export const Table = ({ rows, role, deleteRow, editRow }) => {
+
+  const [currentPage, setCurrentPage] = useState(0);
+  const itemsPerPage = 2;
+
+  const startIndex = currentPage * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const currentData = rows.slice(startIndex, endIndex);
+
+  useEffect(() => {
+    setCurrentPage(0);
+  }, [rows]);
+
+  const totalPages = Math.ceil(rows.length / itemsPerPage);
+
+  const previousPage = () => {
+    if (currentPage > 0) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  const nextPage = () => {
+    if (currentPage < totalPages - 1) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
   
   return (
     <div className="table-wrapper">
@@ -22,7 +47,7 @@ export const Table = ({ rows, role, deleteRow, editRow }) => {
           </tr>
         </thead>
         <tbody>
-          {rows.map((row, idx) => {
+          {currentData.map((row, idx) => {
             return (
               <tr key={idx}>
                 <td>{idx+1}</td>
@@ -42,7 +67,7 @@ export const Table = ({ rows, role, deleteRow, editRow }) => {
                         className="edit-btn"
                         onClick={() => editRow(idx)}
                       />
-                    </span>:
+                    </span>
                   </td> : ""
                 }
               </tr>
@@ -50,6 +75,18 @@ export const Table = ({ rows, role, deleteRow, editRow }) => {
           })}
         </tbody>
       </table>
+      <div className="paginationBtn">
+        <div>
+          <button className="previosBtn, btn" onClick={previousPage} disabled={currentPage === 0}>
+            Previous
+          </button>
+        </div>
+        <div>
+          <button className="nextBtn, btn" onClick={nextPage} disabled={currentPage === totalPages - 1}>
+            Next
+          </button>
+        </div>
+      </div>
     </div>
   );
 };
